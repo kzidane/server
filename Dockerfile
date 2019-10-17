@@ -1,11 +1,11 @@
-FROM cs50/cli
+FROM cs50/cli:python3.8
 USER root
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Default port (to match CS50 IDE)
 EXPOSE 8080
 
-# Packages 
+# Packages
 RUN apt-get update && \
     apt-get install -y \
         libcurl4-openssl-dev `# required by passenger-config` \
