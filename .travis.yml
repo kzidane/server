@@ -4,7 +4,7 @@ script: |
   export VERSION=$(( $(git tag --list --sort=creatordate | tail -n1) + 1 ))
   docker build . -t "$TRAVIS_REPO_SLUG:$VERSION"
 before_deploy:
-- [[ -n "$TRAVIS_TAG" ]] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker tag "$TRAVIS_REPO_SLUG:$VERSION" "$TRAVIS_REPO_SLUG:latest"
+- if [[ -n "$TRAVIS_TAG" ]]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" && docker tag "$TRAVIS_REPO_SLUG:$VERSION" "$TRAVIS_REPO_SLUG:latest"; fi
 - git config --local user.name "bot50"
 - git config --local user.email "bot@cs50.harvard.edu"
 deploy:
