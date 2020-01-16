@@ -12,6 +12,7 @@ deploy:
 - provider: script
   script: docker push "$TRAVIS_REPO_SLUG:$TRAVIS_TAG" && docker push "$TRAVIS_REPO_SLUG:latest"
   on:
+    all_branches: false
     tags: true
 - provider: script
   script: git tag "$TRAVIS_TAG" && git remote set-url origin "https://$GITHUB_TOKEN:x-oauth-basic@github.com/$TRAVIS_SLUG.git" && git push origin "$TRAVIS_TAG"
@@ -22,6 +23,7 @@ deploy:
   api_key: $GITHUB_TOKEN
   skip_cleanup: true
   on:
+    all_branches: false
     tags: true
 notifications:
   slack:
