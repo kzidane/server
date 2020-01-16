@@ -15,7 +15,7 @@ deploy:
     tags: true
 - provider: script
   # If TRAVIS_TAG is set, this provider is triggered on push to any branch
-  script: git tag "$VERSION" && git remote set-url origin "https://$GITHUB_TOKEN:x-oauth-basic@github.com/$TRAVIS_SLUG.git" && git push origin "$VERSION"
+  script: git tag "$VERSION" && git remote set-url origin "https://$GITHUB_TOKEN:x-oauth-basic@github.com/$TRAVIS_REPO_SLUG.git" && git push origin "$VERSION"
   skip_cleanup: true
   on:
     branch: master
